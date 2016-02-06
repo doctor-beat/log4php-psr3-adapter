@@ -1,13 +1,13 @@
 <?php
 
-namespace DoctorBeat\Log4phpPsr4Adapter;
+namespace DoctorBeat\Log4phpPsr3Adapter;
 
 use Logger;
 use Psr\Log\AbstractLogger;
 use Psr\Log\InvalidArgumentException;
 use Psr\Log\LogLevel;
 
-class Log4phpPsr4Adapter extends AbstractLogger {
+class Log4phpPsr3Adapter extends AbstractLogger {
     /**
      *
      * @var Logger;
