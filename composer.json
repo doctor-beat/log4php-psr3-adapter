@@ -1,0 +1,15 @@
+{
+    "name": "vendor/log4php-psr4-adapter",
+    "description": "Description of project log4phpPsr4Adapter.",
+    "require": {
+        "psr/log": "dev-master",
+        "apache/log4php": "2.3.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*",
+        "mockery/mockery": "*"
+    },
+    "autoload": {
+        "psr-4": { "DoctorBeat\\": "src/DoctorBeat/" }
+    }
+}
