@@ -2,12 +2,15 @@
 
 namespace DoctorBeat\Log4phpPsr3Adapter;
 
+use Exception;
 use Logger;
 use Psr\Log\AbstractLogger;
 use Psr\Log\InvalidArgumentException;
 use Psr\Log\LogLevel;
 
 class Log4phpPsr3Adapter extends AbstractLogger {
+    const EXCEPTION_KEY = 'exception'; 
+    
     /**
      *
      * @var Logger;
@@ -23,28 +26,31 @@ class Log4phpPsr3Adapter extends AbstractLogger {
         // PSR-3 states that $message should be a string
         $message = (string) $message;
         
-        $throwable = null;//todo
-        
-        //todo: interpolate
+        $exception = null;
+        if (isset($context[self::EXCEPTION_KEY]) && $context[self::EXCEPTION_KEY] instanceof Exception) {
+            $exception = $context[self::EXCEPTION_KEY];
+        }
+         
+        $message = $this->interpolate($message, $context);
         
         switch ($level) {
             case LogLevel::EMERGENCY:
             case LogLevel::ALERT:
             case LogLevel::CRITICAL:
-                $this->logger->fatal($message, $throwable);
+                $this->logger->fatal($message, $exception);
                 break;
             case LogLevel::ERROR:
-                $this->logger->error($message, $throwable);
+                $this->logger->error($message, $exception);
                 break;
             case LogLevel::WARNING:
-                $this->logger->warn($message, $throwable);
-                break;
             case LogLevel::NOTICE:
+                $this->logger->warn($message, $exception);
+                break;
             case LogLevel::INFO:
-                $this->logger->info($message, $throwable);
+                $this->logger->info($message, $exception);
                 break;
             case LogLevel::DEBUG:
-                $this->logger->debug($message, $throwable);
+                $this->logger->debug($message, $exception);
                 break;
             default:
                 // PSR-3 states that we must throw a
@@ -59,6 +65,21 @@ class Log4phpPsr3Adapter extends AbstractLogger {
         return $this;
     }
 
+    /**
+     * Interpolates context values into the message placeholders.
+     * @param String $message
+     * @param array $context
+     * @return String
+     */
+    protected function interpolate($message, array $context = array()){
+        // build a replacement array with braces around the context keys
+        $replace = array();
+        foreach ($context as $key => $val) {
+            $replace['{' . $key . '}'] = $val;
+        }
 
+        // interpolate replacement values into the message and return
+        return strtr($message, $replace);
+    }
     
 }
