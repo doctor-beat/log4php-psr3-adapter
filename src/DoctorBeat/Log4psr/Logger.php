@@ -1,14 +1,13 @@
 <?php
 
-namespace DoctorBeat\Log4phpPsr3Adapter;
+namespace DoctorBeat\Log4psr;
 
 use Exception;
-use Logger;
 use Psr\Log\AbstractLogger;
 use Psr\Log\InvalidArgumentException;
 use Psr\Log\LogLevel;
 
-class Log4phpPsr3Adapter extends AbstractLogger {
+class Logger extends AbstractLogger {
     const EXCEPTION_KEY = 'exception'; 
     
     /**
@@ -18,8 +17,8 @@ class Log4phpPsr3Adapter extends AbstractLogger {
     private $logger;
 
     public function __construct($logger = 'main', $config = null) {
-        Logger::configure($config);
-        $this->logger = Logger::getLogger($logger);
+        \Logger::configure($config);
+        $this->logger = \Logger::getLogger($logger);
     }
     
     public function log($level, $message, array $context = array()) {

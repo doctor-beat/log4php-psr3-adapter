@@ -1,7 +1,7 @@
 <?php
 
 
-namespace DoctorBeat\Log4phpPsr3Adapter;
+namespace DoctorBeat\Log4psr;
 
 use ErrorException;
 use Mockery as m;
@@ -9,7 +9,7 @@ use Mockery\MockInterface;
 use PHPUnit_Framework_TestCase;
 use Psr\Log\LogLevel;
 
-class Log4phpPsr3AdapterTest extends PHPUnit_Framework_TestCase {
+class LoggerTest extends PHPUnit_Framework_TestCase {
 
     /**
      * @var Log4phpPsr3Adapter
@@ -27,7 +27,7 @@ class Log4phpPsr3AdapterTest extends PHPUnit_Framework_TestCase {
      * This method is called before a test is executed.
      */
     protected function setUp() {
-        $this->object = new Log4phpPsr3Adapter();
+        $this->object = new Logger();
         
         self::$logger = m::mock('Logger');
         $this->object->setLogger(self::$logger);
