@@ -1,6 +1,6 @@
 {
     "name": "doctor-beat/log4psr",
-    "description": "Making log4php compatible with the psr-3 interface. \nLog4php is a great logger but it does not conform to psr-3, the php logger standard interface. This is an adapter that make log4php compatible, so you can swap your loggers without coding.",
+    "description": "Making log4php compatible with the psr-3 interface.",
     "require": {
         "psr/log": "dev-master",
         "apache/log4php": "2.3.0"
