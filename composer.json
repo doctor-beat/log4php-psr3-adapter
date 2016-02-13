@@ -1,5 +1,5 @@
 {
-    "name": "vendor/log4psr",
+    "name": "doctor-beat/log4psr",
     "description": "Description of project log4psr.",
     "require": {
         "psr/log": "dev-master",
