@@ -2,7 +2,7 @@
     "name": "doctor-beat/log4psr",
     "description": "Making log4php compatible with the psr-3 interface.",
 	"license": "MIT",
-    "provides": "Psr\\Log\\LoggerInterface",
+    "provide": "Psr\\Log\\LoggerInterface",
     "require": {
         "psr/log": "dev-master",
         "apache/log4php": "2.3.0"
